@@ -1,17 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from './components/Header';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Signup from './components/Signup';
+import Body from './components/Body';
+import Login from './components/Login';
+import AddExpenses from './components/AddExpenses';
+import ExpenseList from './components/ExpensesList';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const AppLayout =()=> {
+  return <div>
+    <Header/>
+    <Outlet/>
+  </div>
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const appRouter = createBrowserRouter([
+  {
+  path : '/',
+  element : <AppLayout/>,
+  children : [
+    {
+      path : '/',
+      element : <Body/>
+    },
+    {
+      path : '/user/login',
+      element : <Login/>
+    },
+    {
+      path : '/user/signup',
+      element : <Signup/>
+    },
+    {
+      path : '/expense/add',
+      element : <AddExpenses/>
+    },
+    {
+      path : '/expense/list',
+      element : <ExpenseList/>
+    }
+  ]
+  }
+])
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<RouterProvider router={appRouter}/>);

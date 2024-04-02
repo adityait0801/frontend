@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const ExpenseList = () => {
   const [expenses, setExpenses] = useState([]);
-  const [selectedExpense, setSelectedExpense] = useState(null);
+  const [selectedExpense, setSelectedExpense] = useState(true);
   const [updatedTitle, setUpdatedTitle] = useState("");
   const [updatedAmount, setUpdatedAmount] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
